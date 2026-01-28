@@ -1,15 +1,19 @@
 // config/forge.config.env.ts
 import { resolve } from 'node:path'
-import { __dirname } from './file'
+import { HOMEPATH } from './file'
 
-export const iconConfig = {
+const iconConfig = {
   // 基础图标路径
-  baseIcon: resolve(__dirname, './app/assets/logo.png'),
+  baseIcon: resolve(HOMEPATH, './app/assets/logo.png'),
   // 平台特定图标
-  windowsIcon: resolve(__dirname, './app/assets/logo/icons/win/icon.ico'),
-  macIcon: resolve(__dirname, './app/assets/logo/icons/mac/icon.icns'),
+  windowsIcon: resolve(HOMEPATH, './app/assets/logo/icons/win/icon.ico'),
+  macIcon: resolve(HOMEPATH, './app/assets/logo/icons/mac/icon.icns')
   // linuxIcon: resolve(__dirname, '../assets/icons/icon.png'),
   // // 其他资源
   // dmgBackground: resolve(__dirname, '../assets/icons/dmg-background.png'),
   // loadingGif: resolve(__dirname, '../assets/icons/loading.gif'),
+}
+
+export {
+  iconConfig
 }

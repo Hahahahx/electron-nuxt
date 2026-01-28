@@ -4,7 +4,7 @@ import { MakerSquirrel } from '@electron-forge/maker-squirrel'
 import { MakerZIP } from '@electron-forge/maker-zip'
 import { FusesPlugin } from '@electron-forge/plugin-fuses'
 import { FuseV1Options, FuseVersion } from '@electron/fuses'
-import { iconConfig } from './script/config/icons'
+import { iconConfig } from './electron/config/icons'
 import packageJson from './package.json' // 导入 package.json
 import preStart from './script/start'
 import preBuild from './script/build'

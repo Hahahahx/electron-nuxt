@@ -2,8 +2,13 @@ import path from 'node:path'
 import process from 'node:process'
 import { app, BrowserWindow, nativeImage } from 'electron'
 import started from 'electron-squirrel-startup'
-import { __dirname } from '../script/config/file'
-import { iconConfig } from '../script/config/icons'
+import { iconConfig } from './config/icons'
+import { HOMEPATH } from './config/file'
+// import { fileURLToPath } from 'node:url'
+
+// // ES 模块中获取 __dirname
+// const __filename = fileURLToPath(import.meta.url)
+// const HOMEPATH = path.resolve(path.dirname(__filename), '..')
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -28,7 +33,8 @@ function createWindow() {
     frame: false,
     icon, // 设置窗口图标
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      experimentalFeatures: true,
+      preload: path.join(HOMEPATH, 'preload.js')
     }
   })
 
@@ -37,7 +43,7 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:3000')
   } else {
     mainWindow.loadFile(
-      path.join(__dirname, `../app/index.html`)
+      path.join(HOMEPATH, `../app/index.html`)
     )
   }
 
