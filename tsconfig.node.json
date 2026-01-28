@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "moduleDetection": "force",
+    "module": "ESNext",
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    /* Paths */
+    "paths": {
+      "#build/ui": ["./node_modules/.nuxt-ui/ui"]
+    },
+    "resolveJsonModule": true, 
+
+    /* Linting */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "noEmit": true,  // 改为 false
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    
+    "outDir": ".out",  // 注意：输出目录是 .out 
+ 
+  },
+  "include": [ "config/**/*.ts", "electron/**/*.ts", "types/**/*.d.ts", "types/**/*.ts"]
+}
