@@ -49,7 +49,6 @@ export default defineNuxtConfig({
     devProxy: {
       '/api': {
         target: import.meta.env.VITE_API_PROXY_URL, // 这里是接口地址
-        // target: '192.168.188.138:8000', //
         changeOrigin: true,
         prependPath: true
       }
@@ -58,12 +57,6 @@ export default defineNuxtConfig({
       crawlLinks: true,
       ignore: [],
       failOnError: false
-    }
-  },
-
-  vite: {
-    build: {
-      outDir: '.out/nuxt'
     }
   },
   eslint: {
