@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2023"],
+    "target": "ES2020",
+    "lib": ["ES2020"],
     "moduleDetection": "force",
-    "module": "ESNext",
+    "module": "CommonJS",
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
+    "moduleResolution": "node",
     /* Paths */
     "paths": {
       "#build/ui": ["./node_modules/.nuxt-ui/ui"]
@@ -20,11 +21,14 @@
     "noUnusedParameters": true,
 
     "noEmit": true,  // 改为 false
-    "isolatedModules": true,
+    "isolatedModules": false,  // CommonJS 不需要 isolatedModules
     "skipLibCheck": true,
+    "esModuleInterop": true,  // 启用 ES 模块互操作
+    "allowSyntheticDefaultImports": true,  // 允许默认导入
+    "forceConsistentCasingInFileNames": true,
     
-    "outDir": ".out",  // 注意：输出目录是 .out 
+    "outDir": ".out/electron",  // 注意：输出目录是 .out 
  
   },
-  "include": [ "script/config/**/*.ts", "electron/**/*.ts", "types/**/*.d.ts", "types/**/*.ts"]
+  "include": ["electron/**/*.ts", "types/**/*.d.ts", "types/**/*.ts"]
 }
