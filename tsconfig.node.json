@@ -26,5 +26,5 @@
     "outDir": ".out",  // 注意：输出目录是 .out 
  
   },
-  "include": [ "config/**/*.ts", "electron/**/*.ts", "types/**/*.d.ts", "types/**/*.ts"]
+  "include": [ "script/config/**/*.ts", "electron/**/*.ts", "types/**/*.d.ts", "types/**/*.ts"]
 }

@@ -4,7 +4,7 @@ import path from 'path'
 import { existsSync, mkdir } from 'fs'
 import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
-import { __dirname } from '../config/file'
+import { __dirname } from './config/file'
 
 export default async function preBuild(
   _: ForgeConfig

@@ -1,7 +1,7 @@
 import path from 'path'
 import { mkdirSync } from 'fs'
 import fs from 'fs-extra'
-import { __dirname } from '../config/file'
+import { __dirname } from './config/file'
 
 const sourceDir = path.join(__dirname, 'dist')
 const tempDir = path.join(__dirname, '.out', 'app')

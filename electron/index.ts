@@ -2,8 +2,8 @@ import path from 'node:path'
 import process from 'node:process'
 import { app, BrowserWindow, nativeImage } from 'electron'
 import started from 'electron-squirrel-startup'
-import { __dirname } from '../config/file'
-import { iconConfig } from '../config/icons'
+import { __dirname } from '../script/config/file'
+import { iconConfig } from '../script/config/icons'
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
