@@ -17,11 +17,11 @@ export default defineNuxtConfig({
 
   // 应用配置
   app: {
+    buildAssetsDir: '/nuxt/', // 相对路径，注意不要以斜杠开头
     pageTransition: {
       name: 'slide',
       mode: 'out-in' // default
-    },
-    buildAssetsDir: '/nuxt/'
+    }
   },
   css: ['~/assets/css/main.css'],
 

@@ -7,6 +7,7 @@ import { FuseV1Options, FuseVersion } from '@electron/fuses'
 import { iconConfig } from './electron/config/icons'
 import packageJson from './package.json' // 导入 package.json
 import preStart from './script/start'
+import preStartStatic from './script/start-static'
 import preBuild from './script/build'
 
 const productName = packageJson.productName.replace(/\s+/g, '-')
@@ -16,12 +17,15 @@ const config: ForgeConfig = {
     name: productName,
     executableName: productName,
     asar: true,
+    extraResource: [
+      './.out/app'
+    ],
     ignore: [
       '.output', 'dist', '.nuxt', '.git', '.vscode'
     ]
   },
   hooks: {
-    preStart,
+    preStart: preStart,
     prePackage: async (config) => {
       await preBuild(config)
     },

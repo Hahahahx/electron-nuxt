@@ -47,7 +47,9 @@ export default async function prerenderer(
           }
         })
 
-        resolve()
+        setTimeout(() => {
+          resolve()
+        }, 5000)
       } else {
         reject(new Error(`Typescript compilation failed with code ${code}`))
       }

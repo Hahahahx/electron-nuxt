@@ -4,11 +4,20 @@ import { app, BrowserWindow, nativeImage } from 'electron'
 import started from 'electron-squirrel-startup'
 import { iconConfig } from './config/icons'
 import { HOMEPATH } from './config/file'
-// import { fileURLToPath } from 'node:url'
+import serve from './plugins/serve'
 
-// // ES 模块中获取 __dirname
-// const __filename = fileURLToPath(import.meta.url)
-// const HOMEPATH = path.resolve(path.dirname(__filename), '..')
+// 根据环境确定正确的资源路径
+const getResourcesPath = (): string => {
+  if (app.isPackaged) {
+    // 打包后，静态文件位于 resources 目录中
+    return path.join(process.resourcesPath, 'app')
+  } else {
+    // 开发环境中，使用项目根目录下的 .out/app
+    return path.join(HOMEPATH, '../app')
+  }
+}
+
+const loadUrl = serve({ directory: getResourcesPath() })
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
@@ -18,7 +27,7 @@ if (started) {
 console.log('process.env.NODE_ENV', process.env.NODE_ENV)
 const isDev = process.env.NODE_ENV === 'development'
 
-function createWindow() {
+async function createWindow() {
   const iconPath = iconConfig.baseIcon
   const icon = nativeImage.createFromPath(iconPath)
 
@@ -38,15 +47,17 @@ function createWindow() {
     }
   })
 
+  console.log('process.env.NODE_ENV ', isDev)
+
   // and load the index.html of the app.
   if (isDev) {
     mainWindow.loadURL('http://localhost:3000')
   } else {
-    mainWindow.loadFile(
-      path.join(HOMEPATH, `../app/index.html`)
-    )
+    await loadUrl(mainWindow)
+  // mainWindow.loadFile(
+  //   path.join(HOMEPATH, `../app/index.html`)
+  // )
   }
-
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
 }
@@ -54,7 +65,11 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', () => {
+  // 注册 file 协议处理器
+
+  createWindow()
+})
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
